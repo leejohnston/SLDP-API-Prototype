@@ -1,0 +1,125 @@
+{% extends "layout.html" %}
+
+{% block content %}
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+      <h1>Find Somerset Health and Care data you can trust</h1>
+      <p>Access open, non-identifiable datasets through easy-to-use APIs. Discover, test, and integrate data across health and social care to support better insight and planning.
+      Designed for transparency, interoperability, and compliance with NHS standards.</p>
+
+      {% from 'button/macro.njk' import button %}
+
+{{ button({
+  text: "Browse the API catalogue"
+}) }}
+{{ button({
+  text: "Get an API key",
+  classes: "nhsuk-button--secondary"
+}) }}
+    </div>
+  </div>
+
+<section aria-labelledby="benefits-heading" class="nhsuk-section">
+  <div class="nhsuk-width-container">
+    <h2 id="benefits-heading" class="nhsuk-heading-l">What you can do</h2>
+
+    <div class="nhsuk-grid-row">
+      <div class="nhsuk-grid-column-one-third">
+        <div class="nhsuk-card nhsuk-card--clickable">
+          <div class="nhsuk-card__content">
+            <h3 class="nhsuk-card__heading nhsuk-heading-m">
+              <a class="nhsuk-card__link" href="/catalogue">Discover</a>
+            </h3>
+            <p class="nhsuk-card__description">
+              Search a single catalogue of Somerset health and care APIs, with sample data and documentation.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="nhsuk-grid-column-one-third">
+        <div class="nhsuk-card nhsuk-card--clickable">
+          <div class="nhsuk-card__content">
+            <h3 class="nhsuk-card__heading nhsuk-heading-m">
+              <a class="nhsuk-card__link" href="/sandbox">Test</a>
+            </h3>
+            <p class="nhsuk-card__description">
+              Try endpoints instantly in the browser using synthetic data. No installation needed.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="nhsuk-grid-column-one-third">
+        <div class="nhsuk-card nhsuk-card--clickable">
+          <div class="nhsuk-card__content">
+            <h3 class="nhsuk-card__heading nhsuk-heading-m">
+              <a class="nhsuk-card__link" href="/docs/getting-started">Build</a>
+            </h3>
+            <p class="nhsuk-card__description">
+              Integrate trusted, open data into dashboards, models, and applications with consistent patterns.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+  <!-- Use the data section -->
+  <section class="nhsuk-u-margin-top-6">
+    <div class="nhsuk-grid-row">
+      <div class="nhsuk-grid-column-one-half">
+        <h2 class="nhsuk-heading-l">Use the data</h2>
+        <p>Integrate the API with your web application or back-office system.</p>
+        <p><a class="nhsuk-link" href="/docs">View the API documentation</a></p>
+      </div>
+
+      <div class="nhsuk-grid-column-one-half">
+        <div class="code-card" role="region" aria-label="Python example">
+          <div class="code-card__chrome" aria-hidden="true"></div>
+          <pre class="code-card__pre"><code># Python
+import geopandas as gpd
+
+zone = gpd.read_file(
+  "https://api.example.nhs.uk/entity/1202.geojson"
+)
+
+print(zone.head()["name"])</code></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Do not delete this section -->
+<div class="nhsuk-grid-row">
+  <div class="nhsuk-grid-column-full">
+    <hr class="nhsuk-section-break nhsuk-section-break--l nhsuk-section-break--visible">
+  </div>
+</div>
+
+  <section class="nhsuk-u-margin-top-6">
+    <div class="nhsuk-grid-row">
+      <div class="nhsuk-grid-column-one-half">
+        <h2 class="nhsuk-heading-l">Use the data</h2>
+        <p>Integrate the API with your web application or back-office system.</p>
+        <p><a class="nhsuk-link" href="/docs">View the API documentation</a></p>
+      </div>
+
+      <div class="nhsuk-grid-column-one-half">
+        <div class="code-card" role="region" aria-label="Python example">
+          <div class="code-card__chrome" aria-hidden="true"></div>
+          <pre class="code-card__pre"><code># Python
+import geopandas as gpd
+
+zone = gpd.read_file(
+  "https://api.example.nhs.uk/entity/1202.geojson"
+)
+
+print(zone.head()["name"])</code></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+{% endblock %}

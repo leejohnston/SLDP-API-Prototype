@@ -6,6 +6,8 @@
 
 <!-- Extends the prototype kit template which in turn extends the NHS.UK frontend template -->
 {% extends "prototype-kit-template.njk" %}
+{% extends "prototype-kit-template.njk" %}
+{% from "notification-banner/macro.njk" import notificationBanner %}
 
 {% block head %}
   <!-- Add your custom CSS or Sass in /app/assets/sass/main.scss -->
@@ -13,15 +15,60 @@
 {% endblock %}
 
 <!-- Edit the header -->
+
+
 <!-- Header code examples can be found at https://service-manual.nhs.uk/design-system/components/header -->
 {% block header %}
-  {{ header({
-    service: {
-      text: serviceName,
-      href: "/"
-    }
-  }) }}
+{% from 'header/macro.njk' import header %}
+
+{{ header({
+  navigation: {
+    items: [
+      {
+        text: "Home",
+        href: "#",
+        active: true
+      },
+      {
+        text: 'API Catalogue',
+        href: '#'
+      },
+      {
+        text: 'Documentation',
+        href: '#'
+      },
+      {
+        text: 'Governance',
+        href: '#'
+      },
+      {
+        text: 'Service status',
+        href: '#'
+      }
+    ]
+  }
+}) }}
 {% endblock %}
+
+
+{% block beforeContent %}
+  <div class="nhsuk-width-container">
+    <div class="nhsuk-phase-banner">
+      <p class="nhsuk-phase-banner__content">
+        <strong class="nhsuk-tag nhsuk-phase-banner__tag">DISCOVERY</strong>
+        <span class="nhsuk-phase-banner__text">
+          This is a new service – your
+          <a class="nhsuk-link" href="https://example.com/feedback" target="_blank" rel="noopener noreferrer">
+            feedback
+            <span class="nhsuk-u-visually-hidden"> (opens in a new tab)</span>
+          </a>
+          will help us to improve it.
+        </span>
+      </p>
+    </div>
+  </div>
+{% endblock %}
+
 
 <!-- Edit the footer -->
 <!-- Footer code examples can be found at https://service-manual.nhs.uk/design-system/components/footer -->

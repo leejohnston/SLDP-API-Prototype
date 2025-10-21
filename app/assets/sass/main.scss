@@ -2,3 +2,41 @@
 @import "nhsuk-frontend/dist/nhsuk";
 
 // Add your custom CSS/Sass styles below.
+/* Phase banner tag colour override */
+.nhsuk-phase-banner .nhsuk-tag,
+.govuk-phase-banner .govuk-tag { /* if you used GOV.UK classes anywhere */
+  background-color: #1d70b8;   /* GOV.UK blue */
+  color: #ffffff;              /* ensure contrast */
+}
+
+.nhsuk-phase-banner {
+  padding-top: 10px;
+  padding-bottom: 0px;
+  border-bottom: 1px solid #b1b4b6;
+}
+
+/* Two-column code example card */
+.code-card {
+  background: #0b0c0c;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.code-card__chrome {
+  height: 20px;
+  background: #d8dadd; /* light window bar */
+}
+
+.code-card__pre {
+  margin: 0;
+  padding: 16px;
+  color: #fff;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  font-size: 16px;
+  line-height: 1.4;
+  overflow: auto;
+}
+
+/* Optional tiny syntax accents */
+.code-card__pre code { color: #fff; }
+.code-card__pre code .kw { color: #29a197; }  /* use spans if you want */

@@ -2,7 +2,7 @@
 
 module.exports = {
   // Service name
-  serviceName: 'Service name goes here',
+  serviceName: 'Somerset Linked Data Platform API Catalogue',
 
   // Port to run nodemon on locally
   port: 2000,
