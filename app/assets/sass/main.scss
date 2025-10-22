@@ -15,6 +15,12 @@
   border-bottom: 1px solid #b1b4b6;
 }
 
+
+/* equal heights for card grids */
+.equal-cards > [class*="nhsuk-grid-column"] { display: flex; }
+.equal-cards .nhsuk-card { display: flex; flex-direction: column; width: 100%; }
+.equal-cards .nhsuk-card__content { display: flex; flex-direction: column; flex: 1; }
+
 /* Two-column code example card */
 .code-card {
   background: #0b0c0c;
@@ -40,3 +46,17 @@
 /* Optional tiny syntax accents */
 .code-card__pre code { color: #fff; }
 .code-card__pre code .kw { color: #29a197; }  /* use spans if you want */
+
+.endpoint{
+  display:block;
+  margin-top:8px;
+  padding:8px 10px;
+  background:#f3f2f1;
+  border:1px solid #b1b4b6;
+  border-radius:4px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  font-size: 0.95rem;
+  line-height:1.4;
+}
+.endpoint .muted{ color:#505a5f; }
+.endpoint code{ white-space:nowrap; }

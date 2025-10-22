@@ -1,125 +1,301 @@
 {% extends "layout.html" %}
 
 {% block content %}
+  {% from 'button/macro.njk' import button %}
+
   <div class="nhsuk-grid-row">
     <div class="nhsuk-grid-column-two-thirds">
       <h1>Find Somerset Health and Care data you can trust</h1>
-      <p>Access open, non-identifiable datasets through easy-to-use APIs. Discover, test, and integrate data across health and social care to support better insight and planning.
-      Designed for transparency, interoperability, and compliance with NHS standards.</p>
+      <p> Access pseudonymised, multi-partner data through easy-to-use APIs. The first release focuses on people aged 65+ with frequent hospital use. You can explore aggregates for planning, build local analyses, and test ideas with synthetic data. No patient-identifiable data is published here. Any re-identification happens only by the GP for direct care and is fully audited.</p>
 
-      {% from 'button/macro.njk' import button %}
 
-{{ button({
-  text: "Browse the API catalogue"
-}) }}
-{{ button({
-  text: "Get an API key",
-  classes: "nhsuk-button--secondary"
-}) }}
+      {{ button({ text: "Browse the API catalogue", href: "/catalogue" }) }}
+      {{ button({ text: "Get an API key", href: "/keys", classes: "nhsuk-button--secondary" }) }}
     </div>
   </div>
 
-<section aria-labelledby="benefits-heading" class="nhsuk-section">
+  <hr class="nhsuk-section-break nhsuk-section-break--visible nhsuk-section-break--l">
+
+<h2 class="nhsuk-heading-m">Who this is for</h2>
+<ul class="nhsuk-list nhsuk-list--bullet">
+  <li>Analysts and engineers in the NHS, Local Authorities and academia</li>
+  <li>Product owners checking feasibility, coverage and quality</li>
+  <li>Suppliers integrating Somerset-aligned open APIs</li>
+</ul>
+
+  <hr class="nhsuk-section-break nhsuk-section-break--visible nhsuk-section-break--l">
+
+  <section aria-labelledby="benefits-heading" class="nhsuk-section">
+    <div class="nhsuk-width-container">
+      <h2 id="benefits-heading" class="nhsuk-heading-l">What you can do</h2>
+
+<ul class="nhsuk-grid-row nhsuk-card-group">
+  <li class="nhsuk-grid-column-one-third nhsuk-card-group__item">
+    <div class="nhsuk-card nhsuk-card--clickable">
+      <div class="nhsuk-card__content">
+        <h3 class="nhsuk-card__heading nhsuk-heading-m">
+          <a class="nhsuk-card__link" href="/catalogue">Discover</a>
+        </h3>
+        <p class="nhsuk-card__description">
+          Search a single catalogue covering GP, acute, community and council data for an over-65 high-intensity cohort. Each API has examples and mock responses.
+        </p>
+      </div>
+    </div>
+  </li>
+
+  <li class="nhsuk-grid-column-one-third nhsuk-card-group__item">
+    <div class="nhsuk-card nhsuk-card--clickable">
+      <div class="nhsuk-card__content">
+        <h3 class="nhsuk-card__heading nhsuk-heading-m">
+          <a class="nhsuk-card__link" href="/sandbox">Test</a>
+        </h3>
+        <p class="nhsuk-card__description">
+          Run endpoints in your browser against synthetic data. No installation. See parameters, limits and example errors.
+        </p>
+      </div>
+    </div>
+  </li>
+
+  <li class="nhsuk-grid-column-one-third nhsuk-card-group__item">
+    <div class="nhsuk-card nhsuk-card--clickable">
+      <div class="nhsuk-card__content">
+        <h3 class="nhsuk-card__heading nhsuk-heading-m">
+          <a class="nhsuk-card__link" href="/docs/getting-started">Build</a>
+        </h3>
+        <p class="nhsuk-card__description">
+          Build reports and models using clear governance, licences and source provenance. Consistent filters for time, geography and codes.
+        </p>
+      </div>
+    </div>
+  </li>
+</ul>
+
+  <hr class="nhsuk-section-break nhsuk-section-break--visible nhsuk-section-break--l">
+
+ <section aria-labelledby="popular-apis-heading" class="nhsuk-section">
   <div class="nhsuk-width-container">
-    <h2 id="benefits-heading" class="nhsuk-heading-l">What you can do</h2>
+    <h2 id="popular-apis-heading" class="nhsuk-heading-l">Popular APIs</h2>
+    
+<ul class="nhsuk-grid-row nhsuk-card-group">
+  <!-- Card 1 -->
+  <li class="nhsuk-grid-column-one-third nhsuk-card-group__item">
+    <div class="nhsuk-card nhsuk-card--clickable">
+      <div class="nhsuk-card__content">
+        <span class="nhsuk-tag nhsuk-tag--blue">Stable</span>
+        <h3 class="nhsuk-card__heading nhsuk-heading-m">
+          <a class="nhsuk-card__link" href="/catalogue/metadata-catalogue">Metadata Catalogue</a>
+        </h3>
+        <p class="nhsuk-card__description">
+          Lists datasets, schemas, refresh cadence and lineage. Builds trust and shows what exists.
+        </p>
 
-    <div class="nhsuk-grid-row">
-      <div class="nhsuk-grid-column-one-third">
-        <div class="nhsuk-card nhsuk-card--clickable">
-          <div class="nhsuk-card__content">
-            <h3 class="nhsuk-card__heading nhsuk-heading-m">
-              <a class="nhsuk-card__link" href="/catalogue">Discover</a>
-            </h3>
-            <p class="nhsuk-card__description">
-              Search a single catalogue of Somerset health and care APIs, with sample data and documentation.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <div class="nhsuk-grid-column-one-third">
-        <div class="nhsuk-card nhsuk-card--clickable">
-          <div class="nhsuk-card__content">
-            <h3 class="nhsuk-card__heading nhsuk-heading-m">
-              <a class="nhsuk-card__link" href="/sandbox">Test</a>
-            </h3>
-            <p class="nhsuk-card__description">
-              Try endpoints instantly in the browser using synthetic data. No installation needed.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <div class="nhsuk-grid-column-one-third">
-        <div class="nhsuk-card nhsuk-card--clickable">
-          <div class="nhsuk-card__content">
-            <h3 class="nhsuk-card__heading nhsuk-heading-m">
-              <a class="nhsuk-card__link" href="/docs/getting-started">Build</a>
-            </h3>
-            <p class="nhsuk-card__description">
-              Integrate trusted, open data into dashboards, models, and applications with consistent patterns.
-            </p>
-          </div>
+        <div class="endpoint">
+          <code>GET /v1/metadata/catalogue</code>
         </div>
       </div>
     </div>
+  </li>
+
+  <!-- Card 2 -->
+  <li class="nhsuk-grid-column-one-third nhsuk-card-group__item">
+    <div class="nhsuk-card nhsuk-card--clickable">
+      <div class="nhsuk-card__content">
+        <span class="nhsuk-tag nhsuk-tag--grey">Open</span>
+        <h3 class="nhsuk-card__heading nhsuk-heading-m">
+          <a class="nhsuk-card__link" href="/catalogue/population-metrics">Population Metrics</a>
+        </h3>
+        <p class="nhsuk-card__description">
+          Anonymous rates per 1,000 and readmissions by PCN/MSOA and month for planning and trend analysis.
+        </p>
+
+        <div class="endpoint">
+          <code>GET /v1/population/metrics</code><br>
+          <span class="muted">Filters:</span>
+          <code>period</code>, <code>geography</code>, <code>measure</code>
+        </div>
+      </div>
+    </div>
+  </li>
+
+  <!-- Card 3 -->
+  <li class="nhsuk-grid-column-one-third nhsuk-card-group__item">
+    <div class="nhsuk-card nhsuk-card--clickable">
+      <div class="nhsuk-card__content">
+        <span class="nhsuk-tag nhsuk-tag--green">Beta</span>
+        <h3 class="nhsuk-card__heading nhsuk-heading-m">
+          <a class="nhsuk-card__link" href="/catalogue/cohorts-over65">Over-65 High-intensity Cohort</a>
+        </h3>
+        <p class="nhsuk-card__description">
+          Pseudonymised members meeting ≥N admissions in 12 months. Filter by PCN/MSOA for recall and review.
+        </p>
+
+        <div class="endpoint">
+          <code>GET /v1/cohorts/over65/high-intensity</code><br>
+          <span class="muted">Filters:</span>
+          <code>admissions_min</code>, <code>pcn</code>, <code>msoa</code>
+        </div>
+      </div>
+    </div>
+  </li>
+
+  <!-- Card 4 -->
+  <li class="nhsuk-grid-column-one-third nhsuk-card-group__item">
+    <div class="nhsuk-card nhsuk-card--clickable">
+      <div class="nhsuk-card__content">
+        <span class="nhsuk-tag nhsuk-tag--yellow">Prototype</span>
+        <h3 class="nhsuk-card__heading nhsuk-heading-m">
+          <a class="nhsuk-card__link" href="/catalogue/risk-unplanned">Unplanned Admission Risk</a>
+        </h3>
+        <p class="nhsuk-card__description">
+          Simple, explainable score using prior NELs, age band and recent LOS. For prioritisation tests.
+        </p>
+
+        <div class="endpoint">
+          <code>GET /v1/risk/unplanned-admission</code><br>
+          <span class="muted">Params:</span> <code>cohort_id[]</code>
+        </div>
+      </div>
+    </div>
+  </li>
+
+  <!-- Card 5 -->
+  <li class="nhsuk-grid-column-one-third nhsuk-card-group__item">
+    <div class="nhsuk-card nhsuk-card--clickable">
+      <div class="nhsuk-card__content">
+        <span class="nhsuk-tag nhsuk-tag--blue">Stable</span>
+        <h3 class="nhsuk-card__heading nhsuk-heading-m">
+          <a class="nhsuk-card__link" href="/catalogue/governance-optouts">Opt-out Metrics</a>
+        </h3>
+        <p class="nhsuk-card__description">
+          Aggregate counts showing opt-outs honoured across sources for assurance to Caldicott/SIRO.
+        </p>
+
+        <div class="endpoint">
+          <code>GET /v1/governance/optouts</code>
+        </div>
+      </div>
+    </div>
+  </li>
+
+  <!-- Card 6 -->
+  <li class="nhsuk-grid-column-one-third nhsuk-card-group__item">
+    <div class="nhsuk-card nhsuk-card--clickable">
+      <div class="nhsuk-card__content">
+        <span class="nhsuk-tag nhsuk-tag--grey">Open</span>
+        <h3 class="nhsuk-card__heading nhsuk-heading-m">
+          <a class="nhsuk-card__link" href="/catalogue/reference-geographies">Reference Geographies</a>
+        </h3>
+        <p class="nhsuk-card__description">
+          Lookups and boundaries for PCN, LSOA and MSOA to ensure consistent small-area analysis.
+        </p>
+
+        <div class="endpoint">
+          <code>GET /v1/reference/geographies</code>
+        </div>
+      </div>
+    </div>
+  </li>
+</ul>
+
+
+    <p class="nhsuk-u-margin-top-4"><a class="nhsuk-link" href="/catalogue">Browse the full catalogue</a></p>
   </div>
 </section>
-  <!-- Use the data section -->
-  <section class="nhsuk-u-margin-top-6">
-    <div class="nhsuk-grid-row">
-      <div class="nhsuk-grid-column-one-half">
-        <h2 class="nhsuk-heading-l">Use the data</h2>
-        <p>Integrate the API with your web application or back-office system.</p>
-        <p><a class="nhsuk-link" href="/docs">View the API documentation</a></p>
+
+
+  <hr class="nhsuk-section-break nhsuk-section-break--visible nhsuk-section-break--l">
+
+  <section aria-labelledby="get-started-heading" class="nhsuk-section">
+    <div class="nhsuk-width-container">
+      <h2 id="get-started-heading" class="nhsuk-heading-l">Get started in 3 steps</h2>
+      <ol class="nhsuk-list nhsuk-list--number">
+        <li><strong>Explore the catalogue</strong> – find the dataset or API you need.</li>
+        <li><strong>Read the documentation</strong> – parameters, examples and limits.</li>
+        <li><strong>Get an API key</strong> – test in the sandbox, then integrate.</li>
+      </ol>
+      <p class="nhsuk-u-margin-top-2">
+        <a class="nhsuk-button" href="/docs/getting-started" role="button">Read the Getting started guide</a>
+      </p>
+    </div>
+  </section>
+
+  <hr class="nhsuk-section-break nhsuk-section-break--visible nhsuk-section-break--l">
+
+  <section aria-labelledby="governance-heading" class="nhsuk-section">
+    <div class="nhsuk-width-container">
+      <h2 id="governance-heading" class="nhsuk-heading-l">Governance and responsible use</h2>
+
+      <div class="nhsuk-inset-text">
+        <span class="nhsuk-u-visually-hidden">Information: </span>
+        <p>The platform publishes synthetic or aggregated data only. It does not expose patient-level identifiable data.</p>
       </div>
 
-      <div class="nhsuk-grid-column-one-half">
-        <div class="code-card" role="region" aria-label="Python example">
-          <div class="code-card__chrome" aria-hidden="true"></div>
-          <pre class="code-card__pre"><code># Python
-import geopandas as gpd
+      <div class="nhsuk-grid-row">
+        <div class="nhsuk-grid-column-one-half">
+          <h3 class="nhsuk-heading-m">Licence and attribution</h3>
+          <p>Unless stated, data is available under the Open Government Licence v3.0.</p>
+          <p class="nhsuk-u-secondary-text-color">Attribution example: “© Somerset ICB, contains public sector information licensed under the OGL v3.0”.</p>
+          <p><a class="nhsuk-link" href="/governance/licensing">Read about licensing</a></p>
+        </div>
 
-zone = gpd.read_file(
-  "https://api.example.nhs.uk/entity/1202.geojson"
-)
-
-print(zone.head()["name"])</code></pre>
+        <div class="nhsuk-grid-column-one-half">
+          <h3 class="nhsuk-heading-m">Provenance and quality</h3>
+          <p>Each API lists its source system, refresh schedule and known caveats, with a link to the data dictionary.</p>
+          <p><a class="nhsuk-link" href="/governance/provenance">View data provenance</a></p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Do not delete this section -->
-<div class="nhsuk-grid-row">
-  <div class="nhsuk-grid-column-full">
-    <hr class="nhsuk-section-break nhsuk-section-break--l nhsuk-section-break--visible">
-  </div>
-</div>
+  <hr class="nhsuk-section-break nhsuk-section-break--visible nhsuk-section-break--l">
 
-  <section class="nhsuk-u-margin-top-6">
-    <div class="nhsuk-grid-row">
-      <div class="nhsuk-grid-column-one-half">
-        <h2 class="nhsuk-heading-l">Use the data</h2>
-        <p>Integrate the API with your web application or back-office system.</p>
-        <p><a class="nhsuk-link" href="/docs">View the API documentation</a></p>
-      </div>
+  <section aria-labelledby="support-heading" class="nhsuk-section">
+    <div class="nhsuk-width-container">
+      <h2 id="support-heading" class="nhsuk-heading-l">Support and service status</h2>
 
-      <div class="nhsuk-grid-column-one-half">
-        <div class="code-card" role="region" aria-label="Python example">
-          <div class="code-card__chrome" aria-hidden="true"></div>
-          <pre class="code-card__pre"><code># Python
-import geopandas as gpd
+      <div class="nhsuk-grid-row">
+        <div class="nhsuk-grid-column-one-half">
+          <h3 class="nhsuk-heading-m">Need help?</h3>
+          <p>Ask a question or report a problem. We aim to respond within 2 working days.</p>
+          <p><a class="nhsuk-button nhsuk-button--secondary" href="/support" role="button">Contact support</a></p>
+        </div>
 
-zone = gpd.read_file(
-  "https://api.example.nhs.uk/entity/1202.geojson"
-)
-
-print(zone.head()["name"])</code></pre>
+        <div class="nhsuk-grid-column-one-half">
+          <h3 class="nhsuk-heading-m">Current status</h3>
+          <p class="nhsuk-u-secondary-text-color">All systems operational.</p>
+          <p><a class="nhsuk-link" href="/status">Check detailed service status</a></p>
+          <p><a class="nhsuk-link" href="/docs/deprecation">Read the deprecation policy</a></p>
         </div>
       </div>
     </div>
   </section>
 
-  
+  <hr class="nhsuk-section-break nhsuk-section-break--visible nhsuk-section-break--l">
+
+  <section aria-labelledby="use-data-heading" class="nhsuk-section">
+    <div class="nhsuk-width-container">
+      <h2 id="use-data-heading" class="nhsuk-heading-l">Use the data</h2>
+
+      <div class="nhsuk-grid-row">
+        <div class="nhsuk-grid-column-one-half">
+          <p>Integrate the API with your web application or back-office system.</p>
+          <p><a class="nhsuk-link" href="/docs">View the API documentation</a></p>
+        </div>
+
+        <div class="nhsuk-grid-column-one-half">
+          <div class="code-card" role="region" aria-label="Python example">
+            <div class="code-card__chrome" aria-hidden="true"></div>
+            <pre class="code-card__pre" aria-label="Python example"><code># Python
+import requests
+r = requests.get(
+  "https://api.somerset.icb.uk/v1/admissions",
+  headers={"X-API-Key": "&lt;your-key&gt;"},
+  params={"start_date":"2025-04-01","end_date":"2025-04-30","age_band":"75-84","page":1,"page_size":10}
+)
+print(r.json()["items"][0])</code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 {% endblock %}
