@@ -1,0 +1,310 @@
+{% extends "layout.html" %}
+{% from 'button/macro.njk' import button %}
+
+{% block content %}
+
+{# ---- safe defaults so template compiles without a controller ---- #}
+{% set query = query | default('') %}
+{% set activeFiltersList = activeFiltersList | default([]) %}
+{% if not results %}
+  {% set results = {
+    total: 4, page: 1, pages: 3,
+    items: [
+      {
+        slug: "population-metrics",
+        name: "Population Metrics (over-65 high-intensity)",
+        description: "Counts and month-by-month trends for admissions, bed days and ED attendances.",
+        status: "Stable",
+        access: "Protected (API key)",
+        version: "v1",
+        topic: "Population metrics, Events",
+        example: "GET /v1/population/metrics?measure=admissions&interval=month"
+      },
+      {
+        slug: "cohorts-over65",
+        name: "High-intensity Cohort",
+        description: "Pseudonymised cohort membership, entry/exit dates and attributes for over-65 users.",
+        status: "Beta",
+        access: "Restricted (RBAC)",
+        version: "v1.1",
+        topic: "Cohorts",
+        example: "GET /v1/cohorts/over65/high-intensity?admissions_min=2"
+      },
+      {
+        slug: "governance-optouts",
+        name: "Opt-out Metrics",
+        description: "Counts and rates of Type 1 opt-outs applied by practice and PCN for assurance.",
+        status: "Stable",
+        access: "Open",
+        version: "v1",
+        topic: "Opt-out, Population metrics",
+        example: "GET /v1/governance/optouts?group_by=practice"
+      },
+      {
+        slug: "reference-geographies",
+        name: "Reference Geographies",
+        description: "Lookups for LSOA/MSOA/PCN plus optional GeoJSON boundaries.",
+        status: "Open",
+        access: "Open",
+        version: "v2",
+        topic: "Reference data, Geography",
+        example: "GET /v1/reference/geographies/lsoa?include=boundary"
+      }
+    ]
+  } %}
+{% endif %}
+
+<div class="nhsuk-grid-row">
+  <div class="nhsuk-grid-column-full">
+    <h1 class="nhsuk-heading-xl">API catalogue</h1>
+    <p>Browse Somerset ICB Open APIs for pseudonymised, multi-partner population health data. Search by name, topic or data source, then filter by type, access and status.</p>
+  </div>
+</div>
+
+
+<form method="get" action="/catalogue" class="nhsuk-u-margin-bottom-4" role="search" aria-label="Search APIs">
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-full">
+<search class="nhsuk-header__search">
+      <form class="nhsuk-header__search-form" id="search" action="https://www.nhs.uk/search/" method="get">
+        <label class="nhsuk-u-visually-hidden" for="search-field">Search the NHS digital service manual</label>
+        <input class="nhsuk-header__search-input nhsuk-input" id="search-field" name="q" type="search" placeholder="What are you looking for today?" autocomplete="off">
+        <button class="nhsuk-header__search-submit" type="submit">
+          <svg class="nhsuk-icon nhsuk-icon--search" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" focusable="false" role="img" aria-label="Search">
+            <title>Search</title>
+            <path d="m20.7 19.3-4.1-4.1a7 7 0 1 0-1.4 1.4l4 4.1a1 1 0 0 0 1.5 0c.4-.4.4-1 0-1.4ZM6 11a5 5 0 1 1 10 0 5 5 0 0 1-10 0Z" />
+          </svg>
+
+        </button>
+      </form>
+    </search> 
+      <p id="catalogue-hint" class="nhsuk-hint nhsuk-u-margin-top-2">Tip: try “cohort”, “opt-out”, “SFT”, “GP”, or “geography”.</p>
+    </div>
+  </div>
+
+  <details class="nhsuk-details nhsuk-expander nhsuk-u-margin-bottom-2">
+    <summary class="nhsuk-details__summary">
+      <span class="nhsuk-details__summary-text">Filter results</span>
+    </summary>
+    <div class="nhsuk-details__text">
+      <div class="nhsuk-grid-row">
+
+        <div class="nhsuk-grid-column-one-quarter">
+          <fieldset class="nhsuk-fieldset">
+            <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--s">Topic</legend>
+            <div class="nhsuk-checkboxes">
+              <div class="nhsuk-checkboxes__item">
+                <input class="nhsuk-checkboxes__input" id="topic-pop" name="topic" type="checkbox" value="Population metrics">
+                <label class="nhsuk-label nhsuk-checkboxes__label" for="topic-pop">Population metrics</label>
+              </div>
+              <div class="nhsuk-checkboxes__item">
+                <input class="nhsuk-checkboxes__input" id="topic-coh" name="topic" type="checkbox" value="Cohorts">
+                <label class="nhsuk-label nhsuk-checkboxes__label" for="topic-coh">Cohorts</label>
+              </div>
+              <div class="nhsuk-checkboxes__item">
+                <input class="nhsuk-checkboxes__input" id="topic-opt" name="topic" type="checkbox" value="Opt-out">
+                <label class="nhsuk-label nhsuk-checkboxes__label" for="topic-opt">Opt-out</label>
+              </div>
+              <div class="nhsuk-checkboxes__item">
+                <input class="nhsuk-checkboxes__input" id="topic-ref" name="topic" type="checkbox" value="Reference data">
+                <label class="nhsuk-label nhsuk-checkboxes__label" for="topic-ref">Reference data</label>
+              </div>
+              <div class="nhsuk-checkboxes__item">
+                <input class="nhsuk-checkboxes__input" id="topic-geo" name="topic" type="checkbox" value="Geography">
+                <label class="nhsuk-label nhsuk-checkboxes__label" for="topic-geo">Geography</label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <div class="nhsuk-grid-column-one-quarter">
+          <fieldset class="nhsuk-fieldset">
+            <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--s">Data type</legend>
+            <div class="nhsuk-checkboxes">
+              <div class="nhsuk-checkboxes__item">
+                <input class="nhsuk-checkboxes__input" id="dtype-counts" name="dtype" type="checkbox" value="Counts">
+                <label class="nhsuk-label nhsuk-checkboxes__label" for="dtype-counts">Counts</label>
+              </div>
+              <div class="nhsuk-checkboxes__item">
+                <input class="nhsuk-checkboxes__input" id="dtype-series" name="dtype" type="checkbox" value="Time series">
+                <label class="nhsuk-label nhsuk-checkboxes__label" for="dtype-series">Time series</label>
+              </div>
+              <div class="nhsuk-checkboxes__item">
+                <input class="nhsuk-checkboxes__input" id="dtype-lookups" name="dtype" type="checkbox" value="Lookups">
+                <label class="nhsuk-label nhsuk-checkboxes__label" for="dtype-lookups">Lookups</label>
+              </div>
+              <div class="nhsuk-checkboxes__item">
+                <input class="nhsuk-checkboxes__input" id="dtype-geojson" name="dtype" type="checkbox" value="Features (geojson)">
+                <label class="nhsuk-label nhsuk-checkboxes__label" for="dtype-geojson">Features (geojson)</label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <div class="nhsuk-grid-column-one-quarter">
+          <fieldset class="nhsuk-fieldset">
+            <legend class="nhsuk-fieldset__legend nhsuk-fieldset__legend--s">Access level</legend>
+            <div class="nhsuk-checkboxes">
+              <div class="nhsuk-checkboxes__item">
+                <input class="nhsuk-checkboxes__input" id="acc-open" name="access" type="checkbox" value="Open">
+                <label class="nhsuk-label nhsuk-checkboxes__label" for="acc-open">Open</label>
+              </div>
+              <div class="nhsuk-checkboxes__item">
+                <input class="nhsuk-checkboxes__input" id="acc-key" name="access" type="checkbox" value="Protected (API key)">
+                <label class="nhsuk-label nhsuk-checkboxes__label" for="acc-key">Protected (API key)</label>
+              </div>
+              <div class="nhsuk-checkboxes__item">
+                <input class="nhsuk-checkboxes__input" id="acc-rbac" name="access" type="checkbox" value="Restricted (RBAC)">
+                <label class="nhsuk-label nhsuk-checkboxes__label" for="acc-rbac">Restricted (RBAC)</label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        <div class="nhsuk-grid-column-one-quarter">
+          <div class="nhsuk-form-group">
+            <label class="nhsuk-label" for="version">Version</label>
+            <select class="nhsuk-select" id="version" name="version">
+              <option value="">All</option>
+              <option value="v1">v1</option>
+              <option value="v1.1">v1.1</option>
+              <option value="v2">v2</option>
+            </select>
+          </div>
+          <div class="nhsuk-form-group">
+            <label class="nhsuk-label" for="status">Status</label>
+            <select class="nhsuk-select" id="status" name="status">
+              <option value="">All</option>
+              <option value="Stable">Stable</option>
+              <option value="Beta">Beta</option>
+              <option value="Deprecated">Deprecated</option>
+            </select>
+          </div>
+          {{ button({ text: "Apply filters", classes: "nhsuk-u-margin-bottom-1" }) }}
+          <p><a class="nhsuk-link" href="/catalogue">Clear all</a></p>
+        </div>
+
+      </div>
+    </div>
+  </details>
+</form>
+
+
+
+<div class="nhsuk-grid-row">
+  <div class="nhsuk-grid-column-two-thirds">
+    <h2 class="nhsuk-heading-l nhsuk-u-margin-bottom-2">Results</h2>
+    {# Plural-safe total without ternary #}
+    <p class="nhsuk-caption-m nhsuk-u-margin-bottom-4">
+      {{ results.total }} API{% if results.total != 1 %}s{% endif %} found
+    </p>
+    
+    {% if query or (activeFiltersList | length) %}
+      <div class="nhsuk-u-margin-bottom-4" role="status" aria-live="polite">
+        {% if query %}
+          <span class="nhsuk-tag nhsuk-u-margin-right-1">q: {{ query }}</span>
+        {% endif %}
+        {% for f in activeFiltersList %}
+          <span class="nhsuk-tag nhsuk-u-margin-right-1">{{ f.label }}: {{ f.value }}</span>
+        {% endfor %}
+        <a class="nhsuk-link nhsuk-u-margin-left-2" href="/catalogue">Clear all</a>
+      </div>
+    {% endif %}
+  </div>
+  <div class="nhsuk-grid-column-one-third">
+      <div class="nhsuk-form-group">
+        <label class="nhsuk-label" for="sort">Sort by</label>
+        <select class="nhsuk-select" id="sort" name="sort">
+          <option value="relevance">Relevance</option>
+          <option value="name">Name (A–Z)</option>
+          <option value="updated">Recently updated</option>
+          <option value="status">Status</option>
+        </select>
+      </div>
+    </div>
+</div>
+
+
+{% if results.total == 0 %}
+  <div class="nhsuk-inset-text" role="status" aria-live="polite">
+    <span class="nhsuk-u-visually-hidden">Notice: </span>
+    <p>No APIs match your search. Try fewer filters or different terms, for example <code>cohort</code>, <code>population</code>, <code>opt-out</code>, or <code>geography</code>.</p>
+  </div>
+{% else %}
+  <ul class="nhsuk-grid-row nhsuk-card-group">
+    {% for api in results.items %}
+    <li class="nhsuk-grid-column-one-third nhsuk-card-group__item">
+      <div class="nhsuk-card nhsuk-card--clickable">
+        <div class="nhsuk-card__content">
+          {% if api.status == 'Stable' %}
+            <span class="nhsuk-tag nhsuk-tag--green">Stable</span>
+          {% elif api.status == 'Beta' %}
+            <span class="nhsuk-tag nhsuk-tag--blue">Beta</span>
+          {% elif api.status == 'Open' %}
+            <span class="nhsuk-tag nhsuk-tag--grey">Open</span>
+          {% else %}
+            <span class="nhsuk-tag">{{ api.status }}</span>
+          {% endif %}
+
+          <h3 class="nhsuk-card__heading nhsuk-heading-m">
+            <a class="nhsuk-card__link" href="/catalogue/{{ api.slug }}">{{ api.name }}</a>
+          </h3>
+
+          <p class="nhsuk-card__description">{{ api.description }}</p>
+
+          <p class="nhsuk-u-secondary-text-color nhsuk-u-margin-bottom-2">
+            Access: {{ api.access }} · Version: {{ api.version }} · Topic: {{ api.topic }}
+          </p>
+
+          <div class="endpoint">
+            <code>
+              {{ api.example
+                 | replace("/", "/<wbr>")
+                 | replace("&", "&amp;<wbr>") | safe }}
+            </code>
+          </div>
+
+          <p class="nhsuk-u-margin-top-2">
+            <a class="nhsuk-link" href="/catalogue/{{ api.slug }}">View details</a>
+          </p>
+        </div>
+      </div>
+    </li>
+    {% endfor %}
+  </ul>
+
+  <nav class="nhsuk-pagination" role="navigation" aria-label="Pagination">
+    <ul class="nhsuk-list nhsuk-pagination__list">
+      {% if results.page and results.page > 1 %}
+      <li class="nhsuk-pagination-item--previous">
+        <a class="nhsuk-pagination__link nhsuk-pagination__link--prev" href="/catalogue?page={{ results.page - 1 }}">
+          <span class="nhsuk-pagination__title">Previous</span>
+          <span class="nhsuk-u-visually-hidden"> page</span>
+          <span class="nhsuk-pagination__page">{{ results.page - 1 }}</span>
+        </a>
+      </li>
+      {% endif %}
+
+      {% if results.pages and results.page and results.page < results.pages %}
+      <li class="nhsuk-pagination-item--next">
+        <a class="nhsuk-pagination__link nhsuk-pagination__link--next" href="/catalogue?page={{ results.page + 1 }}">
+          <span class="nhsuk-pagination__title">Next</span>
+          <span class="nhsuk-u-visually-hidden"> page</span>
+          <span class="nhsuk-pagination__page">{{ results.page + 1 }}</span>
+        </a>
+      </li>
+      {% endif %}
+    </ul>
+  </nav>
+{% endif %}
+
+<hr class="nhsuk-section-break nhsuk-section-break--xl nhsuk-section-break--visible">
+
+<div class="nhsuk-grid-row">
+  <div class="nhsuk-grid-column-two-thirds">
+    <h2 class="nhsuk-heading-l">What’s in the catalogue</h2>
+    <p>The catalogue lists APIs for pseudonymised data only. Access is governed by role-based controls and audit. See <a class="nhsuk-link" href="/governance">Governance</a> and <a class="nhsuk-link" href="/support">Support</a> for details.</p>
+  </div>
+</div>
+
+{% endblock %}

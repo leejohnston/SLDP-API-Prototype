@@ -81,16 +81,15 @@
   <li class="nhsuk-grid-column-one-third nhsuk-card-group__item">
     <div class="nhsuk-card nhsuk-card--clickable">
       <div class="nhsuk-card__content">
-        <span class="nhsuk-tag nhsuk-tag--blue">Stable</span>
+        <span class="nhsuk-tag nhsuk-tag--yellow">Prototype</span>
         <h3 class="nhsuk-card__heading nhsuk-heading-m">
           <a class="nhsuk-card__link" href="/catalogue/metadata-catalogue">Metadata Catalogue</a>
         </h3>
         <p class="nhsuk-card__description">
           Lists datasets, schemas, refresh cadence and lineage. Builds trust and shows what exists.
         </p>
-
         <div class="endpoint">
-          <code>GET /v1/metadata/catalogue</code>
+          <code>GET /v1<wbr>/metadata<wbr>/catalogue</code>
         </div>
       </div>
     </div>
@@ -100,16 +99,15 @@
   <li class="nhsuk-grid-column-one-third nhsuk-card-group__item">
     <div class="nhsuk-card nhsuk-card--clickable">
       <div class="nhsuk-card__content">
-        <span class="nhsuk-tag nhsuk-tag--grey">Open</span>
+        <span class="nhsuk-tag nhsuk-tag--yellow">Prototype</span>
         <h3 class="nhsuk-card__heading nhsuk-heading-m">
           <a class="nhsuk-card__link" href="/catalogue/population-metrics">Population Metrics</a>
         </h3>
         <p class="nhsuk-card__description">
           Anonymous rates per 1,000 and readmissions by PCN/MSOA and month for planning and trend analysis.
         </p>
-
         <div class="endpoint">
-          <code>GET /v1/population/metrics</code><br>
+          <code>GET /v1<wbr>/population<wbr>/metrics</code><br>
           <span class="muted">Filters:</span>
           <code>period</code>, <code>geography</code>, <code>measure</code>
         </div>
@@ -121,16 +119,15 @@
   <li class="nhsuk-grid-column-one-third nhsuk-card-group__item">
     <div class="nhsuk-card nhsuk-card--clickable">
       <div class="nhsuk-card__content">
-        <span class="nhsuk-tag nhsuk-tag--green">Beta</span>
+        <span class="nhsuk-tag nhsuk-tag--yellow">Prototype</span>
         <h3 class="nhsuk-card__heading nhsuk-heading-m">
           <a class="nhsuk-card__link" href="/catalogue/cohorts-over65">Over-65 High-intensity Cohort</a>
         </h3>
         <p class="nhsuk-card__description">
           Pseudonymised members meeting ≥N admissions in 12 months. Filter by PCN/MSOA for recall and review.
         </p>
-
         <div class="endpoint">
-          <code>GET /v1/cohorts/over65/high-intensity</code><br>
+          <code>GET /v1<wbr>/cohorts<wbr>/over65<wbr>/high-intensity</code><br>
           <span class="muted">Filters:</span>
           <code>admissions_min</code>, <code>pcn</code>, <code>msoa</code>
         </div>
@@ -149,9 +146,8 @@
         <p class="nhsuk-card__description">
           Simple, explainable score using prior NELs, age band and recent LOS. For prioritisation tests.
         </p>
-
         <div class="endpoint">
-          <code>GET /v1/risk/unplanned-admission</code><br>
+          <code>GET /v1<wbr>/risk<wbr>/unplanned-admission</code><br>
           <span class="muted">Params:</span> <code>cohort_id[]</code>
         </div>
       </div>
@@ -169,9 +165,8 @@
         <p class="nhsuk-card__description">
           Aggregate counts showing opt-outs honoured across sources for assurance to Caldicott/SIRO.
         </p>
-
         <div class="endpoint">
-          <code>GET /v1/governance/optouts</code>
+          <code>GET /v1<wbr>/governance<wbr>/optouts</code>
         </div>
       </div>
     </div>
@@ -188,15 +183,13 @@
         <p class="nhsuk-card__description">
           Lookups and boundaries for PCN, LSOA and MSOA to ensure consistent small-area analysis.
         </p>
-
         <div class="endpoint">
-          <code>GET /v1/reference/geographies</code>
+          <code>GET /v1<wbr>/reference<wbr>/geographies</code>
         </div>
       </div>
     </div>
   </li>
 </ul>
-
 
     <p class="nhsuk-u-margin-top-4"><a class="nhsuk-link" href="/catalogue">Browse the full catalogue</a></p>
   </div>

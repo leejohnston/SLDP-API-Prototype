@@ -1,6 +1,8 @@
 // Import NHS.UK frontend library
 @import "nhsuk-frontend/dist/nhsuk";
 
+/* app/assets/scss/application.scss */
+
 // Add your custom CSS/Sass styles below.
 /* Phase banner tag colour override */
 .nhsuk-phase-banner .nhsuk-tag,
@@ -60,3 +62,26 @@
 }
 .endpoint .muted{ color:#505a5f; }
 .endpoint code{ white-space:nowrap; }
+
+.nhsuk-header__search-input.nhsuk-input {
+    font-size: 16px;
+    font-size: 1rem;
+    line-height: 1.5;
+    height: 52px;
+}
+.nhsuk-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    fill:#ffffff;
+}
+.nhsuk-header__search-form{position:relative;max-width:36rem}
+.nhsuk-header__search-input{width:100%;padding-right:3rem;box-sizing:border-box}
+.nhsuk-header__search-submit {
+    height: 36px;
+    width: 36px;
+}
+.nhsuk-header__search-submit{position:absolute;top:0;right:0;border:0;background:#005eb8;fill:#ffffff}
+@media(min-width:641px){.nhsuk-header__search-submit{height:52px;width:52px}}
+
+
+
