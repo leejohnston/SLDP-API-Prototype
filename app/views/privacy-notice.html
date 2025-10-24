@@ -1,0 +1,103 @@
+{% extends "layout.html" %}
+
+{% block content %}
+  <div class="nhsuk-grid-row">
+    <div class="nhsuk-grid-column-two-thirds">
+
+      <h1 class="nhsuk-heading-l">Somerset Integrated Data Platform – Privacy Notice</h1>
+      <p class="nhsuk-body-l">
+        This notice explains how Somerset Integrated Care System (ICS) partners collect, use and protect personal data for the Somerset Data Platform during the Discovery Phase.
+      </p>
+
+      <h2 class="nhsuk-heading-m">Who we are</h2>
+      <p>
+        The Somerset Data Platform is being developed jointly by:
+      </p>
+      <ul class="nhsuk-list nhsuk-list--bullet">
+        <li>NHS Somerset Integrated Care Board (lead controller)</li>
+        <li>Somerset NHS Foundation Trust</li>
+        <li>Somerset Council</li>
+        <li>Symphony Healthcare Services</li>
+        <li>St Margaret’s Hospice</li>
+        <li>Axbridge and Wedmore Medical Practice</li>
+        <li>Frome Medical Practice</li>
+      </ul>
+      <p>
+        These organisations are joint data controllers. Kainos Software Limited acts as data processor and uses UK-based Amazon Web Services (AWS) cloud infrastructure as its sub-processor.
+      </p>
+
+      <h2 class="nhsuk-heading-m">Purpose of the Somerset Data Platform</h2>
+      <p>
+        The Somerset Data Platform is being designed to support better population health management across the county. It will help us understand patterns of health and care use, reduce inequalities, and plan joined-up services for local people.
+      </p>
+      <p>
+        During this Discovery Phase we are testing how data from different systems can be safely linked and pseudonymised. This will allow us to confirm that data can be processed securely and used for legitimate planning and improvement of health and care services.
+      </p>
+
+      <h2 class="nhsuk-heading-m">What data we use</h2>
+      <p>
+        We use a limited set of information about Somerset residents aged 65 and over who are registered with participating GP practices. The information includes:
+      </p>
+      <ul class="nhsuk-list nhsuk-list--bullet">
+        <li>NHS number, date of birth, and postcode (used only for matching)</li>
+        <li>Basic health and care information, such as service attendances</li>
+        <li>Synthetic (non-real) data for sensitive details such as ethnicity and health conditions</li>
+      </ul>
+      <p>
+        All personally identifiable data is automatically pseudonymised before being stored in the platform. This means identifiers are replaced with a unique code and cannot be traced back without additional information held securely by the data controllers.
+      </p>
+
+      <h2 class="nhsuk-heading-m">Lawful basis for processing</h2>
+      <p>
+        The joint controllers process data under:
+      </p>
+      <ul class="nhsuk-list nhsuk-list--bullet">
+        <li><strong>UK GDPR Article 6(1)(e)</strong> – processing is necessary for the performance of a public task in the public interest.</li>
+        <li><strong>UK GDPR Article 9(2)(h)</strong> – processing is necessary for the management of health and social care systems and services.</li>
+      </ul>
+      <p>
+        The work is carried out under the Health and Social Care Act 2012, the NHS Act 2006 and the Care Act 2014.
+      </p>
+
+      <h2 class="nhsuk-heading-m">How your data is kept safe</h2>
+      <ul class="nhsuk-list nhsuk-list--bullet">
+        <li>Data is held in secure UK-based AWS cloud environments.</li>
+        <li>Encryption (AES-256) is used for data in transit and at rest.</li>
+        <li>Access is role-based and restricted to authorised staff only.</li>
+        <li>Audit logs record all data access and system activity.</li>
+        <li>No data is shared outside the UK.</li>
+      </ul>
+
+      <h2 class="nhsuk-heading-m">How long we keep the data</h2>
+      <p>
+        Data used in this Discovery Phase will be held only for the duration of the pilot (approximately 10 weeks). After this period, the data will be securely destroyed unless a justified extension is agreed by all joint controllers and a new DPIA is completed.
+      </p>
+
+      <h2 class="nhsuk-heading-m">Your rights</h2>
+      <p>
+        Individuals have rights under UK data protection law. Because all data in the platform is pseudonymised and not identifiable, these rights usually apply through your original care provider (for example, your GP practice or Somerset NHS Foundation Trust).
+      </p>
+      <ul class="nhsuk-list nhsuk-list--bullet">
+        <li>Right to access your data</li>
+        <li>Right to rectification</li>
+        <li>Right to erasure (where applicable)</li>
+        <li>Right to object to processing</li>
+      </ul>
+      <p>
+        Type 1 opt-outs registered with GP practices will be respected, meaning data for those individuals will not flow into the platform.
+      </p>
+
+      <h2 class="nhsuk-heading-m">Contact</h2>
+<p>
+  If you are an ICS partner interested in learning more about the Data, Sharing &amp; Access Framework at this stage, please contact
+  <a href="mailto:somicb.pophealth@nhs.net">somicb.pophealth@nhs.net</a>.
+</p>
+      <h2 class="nhsuk-heading-m">Further information</h2>
+      <p>
+        For more details about the Somerset Data Platform Discovery Phase, please visit
+        <a href="https://ddat.somerset-ics.uk/">https://ddat.somerset-ics.uk/</a>
+      </p>
+
+    </div>
+  </div>
+{% endblock %}

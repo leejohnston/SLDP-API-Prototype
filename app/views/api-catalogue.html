@@ -8,7 +8,7 @@
 {% set activeFiltersList = activeFiltersList | default([]) %}
 {% if not results %}
   {% set results = {
-    total: 4, page: 1, pages: 3,
+    total: 9, page: 1, pages: 1,
     items: [
       {
         slug: "population-metrics",
@@ -39,6 +39,56 @@
         version: "v1",
         topic: "Opt-out, Population metrics",
         example: "GET /v1/governance/optouts?group_by=practice"
+      },
+      {
+        slug: "reference-geographies",
+        name: "Reference Geographies",
+        description: "Lookups for LSOA/MSOA/PCN plus optional GeoJSON boundaries.",
+        status: "Open",
+        access: "Open",
+        version: "v2",
+        topic: "Reference data, Geography",
+        example: "GET /v1/reference/geographies/lsoa?include=boundary"
+      },
+      {
+        slug: "reference-geographies",
+        name: "Reference Geographies",
+        description: "Lookups for LSOA/MSOA/PCN plus optional GeoJSON boundaries.",
+        status: "Open",
+        access: "Open",
+        version: "v2",
+        topic: "Reference data, Geography",
+        example: "GET /v1/reference/geographies/lsoa?include=boundary"
+      },
+      {
+        slug: "reference-geographies",
+        name: "Reference Geographies",
+        description: "Lookups for LSOA/MSOA/PCN plus optional GeoJSON boundaries.",
+        status: "Open",
+        access: "Open",
+        version: "v2",
+        topic: "Reference data, Geography",
+        example: "GET /v1/reference/geographies/lsoa?include=boundary"
+      },
+      {
+        slug: "reference-geographies",
+        name: "Reference Geographies",
+        description: "Lookups for LSOA/MSOA/PCN plus optional GeoJSON boundaries.",
+        status: "Open",
+        access: "Open",
+        version: "v2",
+        topic: "Reference data, Geography",
+        example: "GET /v1/reference/geographies/lsoa?include=boundary"
+      },
+      {
+        slug: "reference-geographies",
+        name: "Reference Geographies",
+        description: "Lookups for LSOA/MSOA/PCN plus optional GeoJSON boundaries.",
+        status: "Open",
+        access: "Open",
+        version: "v2",
+        topic: "Reference data, Geography",
+        example: "GET /v1/reference/geographies/lsoa?include=boundary"
       },
       {
         slug: "reference-geographies",
@@ -252,17 +302,7 @@
 
           <p class="nhsuk-card__description">{{ api.description }}</p>
 
-          <p class="nhsuk-u-secondary-text-color nhsuk-u-margin-bottom-2">
-            Access: {{ api.access }} · Version: {{ api.version }} · Topic: {{ api.topic }}
-          </p>
-
-          <div class="endpoint">
-            <code>
-              {{ api.example
-                 | replace("/", "/<wbr>")
-                 | replace("&", "&amp;<wbr>") | safe }}
-            </code>
-          </div>
+         
 
           <p class="nhsuk-u-margin-top-2">
             <a class="nhsuk-link" href="/catalogue/{{ api.slug }}">View details</a>
